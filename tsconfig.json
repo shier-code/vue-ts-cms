@@ -1,4 +1,4 @@
-{
+ {
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -12,6 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "sourceMap": true,
+    "noImplicitAny": false,
     "baseUrl": ".",
     "types": [
       "webpack-env"

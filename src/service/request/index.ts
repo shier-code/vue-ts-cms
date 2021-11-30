@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import type { HYRequestInterceptors, HYRequestConfig } from './type';
 import { ElLoading } from 'element-plus';
-import { ILoadingInstance } from 'element-plus/lib/el-loading/src/loading.type';
+import { ILoadingInstance } from 'element-plus/lib/el-loading/src/loading.type'
 const DEFAULT_LOADING = true
 class HYRequest {
     instance: AxiosInstance
