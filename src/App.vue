@@ -1,11 +1,35 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <ElConfigProvider>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/main">main</router-link>
+      <router-view></router-view>
+    </ElConfigProvider>
   </div>
-  <router-view></router-view>
 </template>
+<script lang="ts">
+import { defineComponent } from "vue";
 
+import { ElConfigProvider } from "element-plus";
+import zhCn from "element-plus/lib/locale/lang/zh-cn";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    ElConfigProvider,
+  },
+  props: {
+    name: {
+      type: String,
+    },
+  },
+  setup() {
+    return {
+      zhCn,
+    };
+  },
+});
+</script>
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

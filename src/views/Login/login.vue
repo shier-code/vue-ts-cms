@@ -1,4 +1,3 @@
-
 <template>
   <div class="">
     login
@@ -14,5 +13,4 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-</style>
+<style scoped></style>

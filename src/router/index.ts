@@ -1,5 +1,5 @@
 /*
- * @Desc: 
+ * @Desc:
  * @Version: v1.00
  * @Author: went
  * @Date: 2021-08-26 10:16:51
@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    redirect: "/login"
+    redirect: "/login",
   },
   {
     path: "/login",

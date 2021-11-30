@@ -1,5 +1,5 @@
 /*
- * @Desc: 
+ * @Desc:
  * @Version: v1.00
  * @Author: went
  * @Date: 2021-08-26 10:16:51
@@ -24,6 +24,6 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    '@typescript-eslint/no-var-requires':'off'
+    "@typescript-eslint/no-var-requires": "off",
   },
 };

@@ -1,5 +1,5 @@
 /*
- * @Desc: 
+ * @Desc:
  * @Version: v1.00
  * @Author: went
  * @Date: 2021-08-26 10:16:51
@@ -9,10 +9,10 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: ()=>{
+  state: () => {
     return {
-      name:'shier'
-    }
+      name: "shier",
+    };
   },
   mutations: {},
   actions: {},
