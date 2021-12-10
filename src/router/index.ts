@@ -4,11 +4,11 @@
  * @Author: went
  * @Date: 2021-08-26 10:16:51
  * @LastEditors: went
- * @LastEditTime: 2021-11-30 13:19:31
+ * @LastEditTime: 2021-12-09 16:01:40
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-
+import localCache from "@/utils/cache";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -39,5 +39,12 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-
+router.beforeEach((to) => {
+  if (to.path !== "/login") {
+    const token = localCache.getCache("token");
+    if (!token) {
+      return "/login";
+    }
+  }
+});
 export default router;

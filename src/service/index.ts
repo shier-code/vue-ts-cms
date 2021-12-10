@@ -4,33 +4,34 @@
  * @Author: went
  * @Date: 2021-08-26 10:16:51
  * @LastEditors: went
- * @LastEditTime: 2021-11-30 11:20:54
+ * @LastEditTime: 2021-12-09 15:43:04
  */
 //service统一出口
-import HYRequest from "./request";
+import WTRequest from "./request";
 import { BASE_URL, TIME_OUT } from "./request/config";
-const hyRequest = new HYRequest({
+import localCache from "@/utils/cache";
+const wtRequest = new WTRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
     requestIntercepter: (config) => {
       console.log("success intercepter");
       //携带token
-      const token = "thisistoken";
+      const token = localCache.getCache("token");
       if (token) {
-        // config.headers.Authorization = `Bearer ${token}`
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     },
-    requestInterceptorCaatch: (err) => {
+    requestInterceptorCatch: (err) => {
       return err;
     },
     responseIntercepter: (config) => {
       return config;
     },
-    // responseInterceptorCaatch: (err) => {
-    //     return err
-    // }
+    responseInterceptorCatch: (err) => {
+      return err;
+    },
   },
 });
-export default hyRequest;
+export default wtRequest;

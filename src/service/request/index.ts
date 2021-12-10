@@ -1,29 +1,29 @@
 import axios from "axios";
 import type { AxiosInstance } from "axios";
-import type { HYRequestInterceptors, HYRequestConfig } from "./type";
+import type { WTRequestInterceptors, WTRequestConfig } from "./type";
 import { ElLoading } from "element-plus";
 import { ILoadingInstance } from "element-plus/lib/el-loading/src/loading.type";
 const DEFAULT_LOADING = true;
-class HYRequest {
+class WTRequest {
   instance: AxiosInstance;
-  interceptors?: HYRequestInterceptors;
+  interceptors?: WTRequestInterceptors;
   showLoading?: boolean;
   loadiing?: ILoadingInstance;
-  constructor(config: HYRequestConfig) {
+  constructor(config: WTRequestConfig) {
     //创建axios实例
     this.instance = axios.create(config);
     //保存基本信息
-    this.showLoading = config.showLoading ?? DEFAULT_LOADING;
+    this.showLoading = config.showLoading || DEFAULT_LOADING;
     this.interceptors = config.interceptors;
     //使用拦截器
     //1、从config中取出的拦截器是对应实例的拦截器
     this.instance.interceptors.request.use(
       this.interceptors?.requestIntercepter,
-      this.interceptors?.requestInterceptorCaatch
+      this.interceptors?.requestInterceptorCatch
     );
     this.instance.interceptors.response.use(
       this.interceptors?.responseIntercepter,
-      this.interceptors?.responseInterceptorCaatch
+      this.interceptors?.responseInterceptorCatch
     );
     //2、添加所有实例都有的拦截器
     this.instance.interceptors.request.use(
@@ -64,19 +64,19 @@ class HYRequest {
       }
     );
   }
-  request<T>(config: HYRequestConfig): Promise<T> {
+  request<T>(config: WTRequestConfig): Promise<T> {
     return new Promise((resolve, reject) => {
       if (config.interceptors?.requestIntercepter) {
         config = config.interceptors.requestIntercepter(config);
       }
       if (config.showLoading == false) {
-        this.showLoading = config.showLoading ?? true;
+        this.showLoading = config.showLoading || true;
       }
       this.instance
         .request<any, T>(config)
         .then((res) => {
           if (config.interceptors?.responseIntercepter) {
-            res = config.interceptors.responseIntercepter(res);
+            // res = config.interceptors.responseIntercepter(res);
           }
           console.log(res);
           resolve(res);
@@ -91,11 +91,11 @@ class HYRequest {
         });
     });
   }
-  get<T>(config: HYRequestConfig): Promise<T> {
+  get<T>(config: WTRequestConfig): Promise<T> {
     return this.request<T>({ ...config, method: "GET" });
   }
-  post<T>(config: HYRequestConfig): Promise<T> {
+  post<T>(config: WTRequestConfig): Promise<T> {
     return this.request<T>({ ...config, method: "POST" });
   }
 }
-export default HYRequest;
+export default WTRequest;

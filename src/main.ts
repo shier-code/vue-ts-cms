@@ -4,30 +4,33 @@
  * @Author: went
  * @Date: 2021-08-26 10:16:51
  * @LastEditors: went
- * @LastEditTime: 2021-11-30 11:52:24
+ * @LastEditTime: 2021-12-09 16:09:39
  */
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { registerApp } from "./global";
-// import hyRequest from './service';
+import { setupStore } from "./store";
+import wtRequest from "./service";
 import axios from "axios";
 
+import "normalize.css";
+import "./assets/css/index.less";
 const app = createApp(App);
 // 0(app)
 app.use(store).use(router).use(registerApp).mount("#app");
-
-interface DataType {
-  data: any;
-  retuenCode: string;
-  successs: boolean;
-}
-// hyRequest.request<DataType>({
+setupStore()
+// interface DataType {
+//   data: any;
+//   retuenCode: string;
+//   successs: boolean;
+// }
+// wtRequest.request<DataType>({
 //     url: "/home/multidata",
 //     method: "GET"
 // })
-// hyRequest.request<DataType>({
+// wtRequest.request<DataType>({
 //     url: "/home/multidata",
 //     method: "GET",
 //     // showLoading: false,
